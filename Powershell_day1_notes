@@ -24,3 +24,45 @@ get-childitem -recurse -filter *.pf -name C:\ --> same
 get-childitem -recurse -filter *.pf C:\ -name --> this also prints the same things to the scren.
 
 get-service -name power,Dnscache
+
+
+Activity Three
+VARIABLES --> these are things that are named and stored in a memory location
+
+      Python Bash  PowSh
+init | var | var  | $var
+call | var | $var | $var
+
+Needs to Know
+$Args --> contains an array of values undeclared variables
+$input --> an enumerator that enumerates all input that is passed to a function
+$_ --> same as $PSItem contains the current object in the pipeline
+$PROFILE --> Contains the full path of the PowerShell profile for the current user and the current host application.
+$null --> a null object. the void... it is nothing, asigning another variable to '=' null would wipe/clean a variable
+
+Environmental variables:
+$env:<variable-name> --> $env: looks for environmetal variables.
+
+$number = 61742
+$nospaces="death" 
+
+('spaces don't 'matter')
+
+$number - 1
+
+$var,$var2 = 65535, -1     <--    <---------<
+
+(variables can be listed in one line ^^^^^)
+
+$var1,$var2,Var3 = 65535
+$var1
+>> 65535
+$var2
+>>
+$var3
+>>
+
+$Var1 = $Var2 = $Var3 = 65535 (makes all the Variables the same thing)
+
+
+get-variable var1 --> OMIT the $ when useing get-variable.or it will break
