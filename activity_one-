@@ -30,10 +30,15 @@ VARIABLES --> these are things that are named and stored in a memory location
       Python Bash  PowSh
 init | var | var  | $var
 call | var | $var | $var
+notes stored in the notes file
 
-$number = 61742
-$nospaces="death" 
-
-('spaces don't 'matter')
-
-$number - 1
+<#1.#> $var1 = get-random -minimum 25 -Maximum 50
+<#2.#> $var2 = get-random -Minimum 1 -Maximum 10
+<#3.#> $sum=$var1+$var2
+<#4.#> $sub=$var1-$var2 
+<#5.#> $prod=$var1*$var2
+<#6.#> $quo=$var1/$var2
+<#7.#> echo "$var1 + $var2 = $sum"
+<#8.#> echo "$var1 - $var2 = $sub"
+<#9.#> echo "$var1 * $var2 = $prod"
+<#10.#> echo "$var1 / $var2 = $quo"
