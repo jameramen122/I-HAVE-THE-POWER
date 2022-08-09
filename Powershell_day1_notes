@@ -1,0 +1,26 @@
+powershell is not an exe, it is a dll.
+
+on new machines, make sure to run update-help -force -Erroraction (followed by one of 6 choses)
+
+there is also get-help. (man is an Ailias)
+
+get-service is very good too.
+
+get-childitem  -path C:\ -recurse -filter *.pf -name
+gci -rec C:\Windows\System32\drivers\etc -filt *.pf -na --> the shorter names are accepted by powershell so long as the shorthand actually solo's out the remaining cmd. rec is recurse while re is ReadOnly
+
+
+#switch paramiters
+#they are boolians:
+#-on
+#--or off
+#---nothing else. these are off unless made otherwise.
+-recurse --> this is a switch paramiter.
+
+positional paramiters
+optional to the call, they look at strings,
+get-childitem C:\ -recurse -filter *.pf -name --> runs the same as the other up there
+get-childitem -recurse -filter *.pf -name C:\ --> same
+get-childitem -recurse -filter *.pf C:\ -name --> this also prints the same things to the scren.
+
+get-service -name power,Dnscache
