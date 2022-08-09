@@ -1,0 +1,39 @@
+Activity ONE
+
+1 Update-Help -Force -ErrorAction SilentlyContinue
+2 Get-Help *process* (get-command -noun process, debug-process, get-process, start-process, stop-process)
+3 Get-Service
+4 Get-Help *object* (Get-ChildItem)
+5 Get-Help *variable*
+6 Get-Command
+7 prompt (get-command *prompt*)
+
+
+Activity TWO
+(ALIAS's run:'$alias:<alias-name>' ' to get the names of the function the alias is for! >:3)
+(USE 'set-alias <alias-name> <exe of the function>' To DELETE an alias do 'del alias:<alias-name>'){the set cmdlet does NOT set the alias for life. they go away after the session ends}
+1. Get-Process
+2. Get-Process S*
+3.
+   a. gal = Get-Alias      | ($Alias:gal)
+   b. dir = Get-ChildItem  | ($Alias:dir)
+   c. echo = Write-Output  | ($Alias:echo)
+   d. ? = Where-Object     | ($Alias:?)
+   e. % = ForEach-Object   | ($Alias:%)
+   f. ft = Format-Table    | ($Alias:ft)
+4. get-netfirewallrule     
+5. set-alias gh Get-Help   
+
+Activity Three
+VARIABLES --> these are things that are named and stored in a memory location
+
+      Python Bash  PowSh
+init | var | var  | $var
+call | var | $var | $var
+
+$number = 61742
+$nospaces="death" 
+
+('spaces don't 'matter')
+
+$number - 1
