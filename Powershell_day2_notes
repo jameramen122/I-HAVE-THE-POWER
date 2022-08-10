@@ -22,3 +22,89 @@ $order['chik-fil-a'] #not case sinsitive
 $order.keys
 $order.values #expands all arrays in the hash table.
 $order[$order.keys] #another way to get the VALUES
+
+
+
+-like and -notlike
+"Inky" -like "*"
+"Blinky" -like "Bl?nky"
+"Pinky" -like "[L-Q]inky"
+"Clyde" -like "[ABC]lyde"
+
+"Inky" -notlike "*" --> False, something out there is like Inky.
+"Blinky" -notlike "Bli?nky" --> True, there is an extra character.
+"Pinky" -notlike "[A-F]inky" --> True, P is not within A-F
+"Clyde" -notlike "[DEF]lyde" --> True, -->Dlyde is not Clyde
+
+
+#match
+$text = "your account usename is ACE4495"
+$pattern = '([A-F]{3})(/d{4})'
+$text -match $pattern
+
+#contains
+$ghosts = "Inky", "Blinky", "Pinky", "Clyde"
+$ghosts -contains 'Pinky'
+--> case sinsitive?
+#Pac-man be like >
+
+$num = 5
+(($num -gt 1) -and ($num -lt 10)) --> True
+(($num -gt 6) -or ($num -lt 10)) --> True
+(($num -gt 6) -or ($num -lt 4)) --> False
+
+
+get-process | where-object {$_.company -like 'micro*'} | Format-Table Name, Description, Company
+#user OOBE Broker should be listed among the things outputted from this near the bottom
+
+for (initialization; condition; increment)
+{
+    code block to be executed
+}
+
+ForEach ($item in expression)
+{
+    codblock to be executed
+}
+
+$object | ForEach-Object { code block to be executed}
+
+While(condition True){
+"execute whats in here"
+}
+
+Do{
+"execute whats in here"
+} While(condition True)
+
+
+$num = 4
+
+while($num -lt 42){$num; Num++}
+
+do{
+$num
+$num++
+}while($num -lt 42)
+      _____
+     /     |
+or... this V
+
+do{
+$num
+$num++
+}until($num -lt 42)
+
+$num = 0
+while($num -lt 42){
+    $num++
+    if($num -eq 2){
+        continue
+    }
+    $num
+}
+#replace 'continue' with 'break' to break the loop
+
+
+
+Get-Content
