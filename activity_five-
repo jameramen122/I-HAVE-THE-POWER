@@ -53,3 +53,37 @@ $employee3["status"]= "Entry Level"
 # This one ^^^^^^ looks for process start time
 
 #get-unique --> requires a sort before it works. finds all unique char. no duplicates
+
+##ACTIVITY SIX##
+ #1.
+get-process | where-object processname -ne "Idle" | sort-object starttime | select-object -last 1 -first 1| Format-Table processname, starttime
+
+ #2.Get-date | format-table gave me names for everything :3
+Get-date | Select-Object DayofWeek
+
+ #3.
+Get-HotFix
+
+ #4.
+Get-HotFix | select Description, InstalledOn, HotFixID | sort Description
+
+ #5.
+Get-HotFix | select description, HotFixID, InstalledOn | sort description
+
+
+**Acti vit y SEVEN**
+  $compinfo= Get-WmiObject win32_computersystem | select -ExpandProperty name
+  $OSinfo2= Get-WmiObject win32_OperatingSystem | select -ExpandProperty caption
+  $OSinfo= Get-WmiObject win32_OperatingSystem | select -ExpandProperty version
+  $manfactinfo= Get-WmiObject win32_computersystem | select -ExpandProperty Manufacturer
+  $diskinfo= Get-WmiObject win32_LogicalDisk | select -ExpandProperty Path
+  $diskinfo2= $diskinfo | select -ExpandProperty path
+
+  $wmiNotMyObject = New-Object Object
+
+  add-member -Me NoteProperty -na name_boi -value $compinfo -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na operator_boi -value $OSinfo2 -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na version_boi -value $osinfo -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na manufact_bois -value $manfactinfo -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na disky_bois -value $diskinfo2 -InputObject $wmiNotMyObject
+
