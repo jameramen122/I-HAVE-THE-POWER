@@ -1,1 +1,24 @@
+#hash tables
 
+#@{key="value" ; key2="value2" }
+
+$hashy_boi=@{key="value" ; key2="value2" }
+
+$another = @{}
+$another.Is_Anime= "yes"
+$another["Is_Good"]= "depends"
+$another.add("OPM","Saitama")
+$another
+
+$order = [ordered]@{}
+$order.First_Thingy= "ThingOne"
+$order."McDonalds" = @("BigMac", "1 chicken nuggy", "7 happy meals", "1 filet-o-fish")
+$order["Chik-fil-A"]="2 spicy Chicken Sandwiches"
+$order.add("Taco Bell", "A bad time")
+
+$order.'Chik-fil-A'
+$order['Chik-fil-A']
+$order['chik-fil-a'] #not case sinsitive
+$order.keys
+$order.values #expands all arrays in the hash table.
+$order[$order.keys] #another way to get the VALUES
