@@ -66,3 +66,80 @@ $Var1 = $Var2 = $Var3 = 65535 (makes all the Variables the same thing)
 
 
 get-variable var1 --> OMIT the $ when useing get-variable.or it will break
+
+
+**ARRAYS!!!**
+<#an array is a list that you can itterate through#>
+
+
+$array=@() <#this array is empty, it is comparable to null#>
+$number_arr= 4,5,6
+[array]$blank_array=$null <#this array needs a value, "" <-- works too. it is NOT empty#>
+
+<#to add#>
+$array += "empty like my mind"
+
+#$x = "Husbando for life"
+#$x -is [array] --> not an array
+#$x -is [string] --> not a string
+
+
+$poly_arr = (get-computerinfo), "help me!", 547098
+
+$poly_arr[1] #counts by index
+
+$poly_arr | Select_Object -index 2
+$seq_num= 4..50
+$seq_num[-1] 
+$seq_num[$seq_num.length-1] #length could be count too
+$seq_num[1,2,20,39,22]
+
+----------------------------------------------------------------
+#Nested array
+{!,@,{1,2,3},#}
+<#
+#human veiw
+!,$Null,$Null,
+@,$Null,$Null,
+1,    2,    3,
+#,$Null,$Null
+#>
+
+$nested[2] = 1,2,3
+$nested[2][1] = 2
+
+$nested[3][1] = $error
+
+--------------------------------------
+#Multi dimentional NESTED ARRAY
+{Tri, Square,{!,@,{1,2,3},#},cir}
+
+human veiw
+
+tri, $null
+Square,
+@     , !, 1, #
+           2,
+           3,
+cir
+
+$multi[2] = @,!,{1,2,3}, #
+$multi[2][2] = 1,2,3
+$multi[2][2][1] = 2
+
+$multi[1][2][3] = $error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
