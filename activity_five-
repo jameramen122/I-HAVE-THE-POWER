@@ -1,1 +1,31 @@
 activity 5... Hashtables... woot.
+#hash tables
+
+$employee1=[ordered]@{}
+$employee2=[ordered]@{}
+$employee3=[ordered]@{}
+
+$employee1["First"] = "Mary" 
+$employee1["Last"]= "Hopper"
+$employee1["ID"]= "001"
+$employee1["Job"]= "software Developer"
+
+$employee2["First"] = "John"
+$employee2["Last"]= "Williams"
+$employee2["ID"]= "002"
+$employee2["Job"]= "Web Developer"
+
+$employee1.username= "mhopper001"
+$employee2.username= "jwilliams002"
+$employee1["Job"]= "Software Lead"
+
+$employee3["First"] = "Alex" 
+$employee3["Last"]= "Moran"
+$employee3["ID"]= "003"
+$employee3["Job"]= "Software Developer"
+
+$employee3["username"]= "amoran003"
+
+$employee1["status"]= "Management"
+$employee2["status"]= "Intermediate"
+$employee3["status"]= "Entry Level"
