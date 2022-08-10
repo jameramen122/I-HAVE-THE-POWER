@@ -86,4 +86,31 @@ Get-HotFix | select description, HotFixID, InstalledOn | sort description
   add-member -Me NoteProperty -na version_boi -value $osinfo -InputObject $wmiNotMyObject
   add-member -Me NoteProperty -na manufact_bois -value $manfactinfo -InputObject $wmiNotMyObject
   add-member -Me NoteProperty -na disky_bois -value $diskinfo2 -InputObject $wmiNotMyObject
+  
+  ACTIVITY EIGHT
+
+  #Get-WmiObject Win32_Computersystem
+
+  #Get-WmiObject Win32_BIOS
+
+  #Get-WmiObject Win32_OperatingSystem
+
+  #Get-WmiObject Win32_LogicalDisk
+  $compinfo= Get-WmiObject win32_computersystem | select -ExpandProperty name
+  $OSinfo2= Get-WmiObject win32_OperatingSystem | select -ExpandProperty caption
+  $OSinfo= Get-WmiObject win32_OperatingSystem | select -ExpandProperty version
+  $manfactinfo= Get-WmiObject win32_computersystem | select -ExpandProperty Manufacturer
+  $diskinfo= Get-WmiObject win32_LogicalDisk | select -ExpandProperty Path
+  $diskinfo2= $diskinfo | select -ExpandProperty path
+
+  $wmiNotMyObject = New-Object Object
+
+  add-member -Me NoteProperty -na name_boi -value $compinfo -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na operator_boi -value $OSinfo2 -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na version_boi -value $osinfo -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na manufact_bois -value $manfactinfo -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na disky_bois -value $diskinfo2 -InputObject $wmiNotMyObject
+  
+  ACTIVITY NINE!!!! >:3
+
 
