@@ -29,3 +29,27 @@ $employee3["username"]= "amoran003"
 $employee1["status"]= "Management"
 $employee2["status"]= "Intermediate"
 $employee3["status"]= "Entry Level"
+
+#Get-Service | format-table * --> gets more info out of a command
+#get-service | format-list * --> this is another one that gets more info
+#Get-Service BTAGService| format-list *
+#Get-service | Get-Member --> similar to the one below this. but different info kinda.
+#Get-Member -inputObject Get-Service --> simular to the one above it, but different info kinda.
+#(get-service bfe).starttype --> gets the starttype of a service called BFE, base filtering engine. It manages firewall and Internet Protocol security (IPsec) policies and implements user mode filtering. 
+#(get-service bfe).stop() --> stops a service called BFE
+#write-host pushes right to the screen
+#write-output allows other commands to adjust the info like 'sort'
+#
+#use 'Get-Command -verb format' to find the ways to format and squeeze out more information on the commands used
+
+#get-service | sort-object -Property  status --> sorts objects off of their running or stopped status
+#get-service | group-object -Property  status --> displays a number of running and stopped services
+
+#Get-Service | Where-Object { $_.status -eq "Running"} --> this displays only the Running services! :3
+#hehehehehehe
+#get-process | select-object -first 10 --> basicly the head command but with more words. >:3
+
+#get-process | where-object processname -ne "Idle" | sort-object starttime | select-object -last 10 | Format-Table processname, starttime
+# This one ^^^^^^ looks for process start time
+
+#get-unique --> requires a sort before it works. finds all unique char. no duplicates
