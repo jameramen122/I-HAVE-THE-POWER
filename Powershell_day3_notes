@@ -1,0 +1,80 @@
+Function <function name> { <function code goes here> }
+Function Hello-World { 'Hello World!' }
+to call it again just write --> Hello-World 
+another way to make it
+Function hello-world {
+'Hello World!'
+}
+
+after that session of powershell is ended the function will disappear, they are volitile.
+
+functions are stored in the 'function' PSdrive
+to veiw all functions use this V V V
+Get-ChildItem function:*
+
+then use get-content with the function name to get what it does!
+
+
+function <function name> ($<paramiter name>) { <function code> }
+
+([string]::isnullorwhitespace($parameter)) this can be used to compaire for/against Null
+
+
+#switch parameters
+function help-params {
+    Param(
+        [paramiter(Manditory=$True,helpmessage="Type in a number")]
+        $Param
+    )
+    "The argument `"$param"` was manditory for this function"
+    
+  #displays helpmessage?
+}
+
+
+
+
+
+
+function Positional-param {
+    Param(
+        [paramiter(Manditory=$True,Position=0)]
+        [Int]
+        $number,
+        [paramiter(Manditory=$True,Position=1)]
+        [string]
+        $string,
+        [paramiter(Manditory=$True,Position=2)]
+        [string]
+        $AnotherString
+        )
+    write-output "$number is the first positional}
+    write-output "$string is the second positional paramiter}
+    write-output "$anotherstring is the third positional paramiter}
+    
+    [cmdletBinding] --> allows normal  w/o 
+    
+    function cmdlet-function {
+    [cmdletBinding(Defaultpatameterssetname-'Tacos']
+      param(
+      [parameter(parameterstename="Tacos", Manditory=$true
+      $cheese
+      [parameter(parameterstename="BURRITOS", Manditory=$true}
+      $flavor
+      )
+      $parametersetname = $pscmdlet.parametersetname
+      "the $parameterset Parameter set was utilized"
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
