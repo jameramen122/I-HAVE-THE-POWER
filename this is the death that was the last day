@@ -1,0 +1,361 @@
+<#hash tables
+
+$employee1=[ordered]@{}
+$employee2=[ordered]@{}
+$employee3=[ordered]@{}
+
+$employee1["First"] = "Mary" 
+$employee1["Last"]= "Hopper"
+$employee1["ID"]= "001"
+$employee1["Job"]= "software Developer"
+
+$employee2["First"] = "John"
+$employee2["Last"]= "Williams"
+$employee2["ID"]= "002"
+$employee2["Job"]= "Web Developer"
+
+$employee1.username= "mhopper001"
+$employee2.username= "jwilliams002"
+$employee1["Job"]= "Software Lead"
+
+$employee3["First"] = "Alex" 
+$employee3["Last"]= "Moran"
+$employee3["ID"]= "003"
+$employee3["Job"]= "Software Developer"
+
+$employee3["username"]= "amoran003"
+
+$employee1["status"]= "Management"
+$employee2["status"]= "Intermediate"
+$employee3["status"]= "Entry Level"
+#>
+ <#Get-Service | format-table * --> gets more info out of a command
+#get-service | format-list * --> this is another one that gets more info
+#Get-Service BTAGService| format-list *
+#Get-service | Get-Member --> similar to the one below this. but different info kinda.
+#Get-Member -inputObject Get-Service --> simular to the one above it, but different info kinda.
+#(get-service bfe).starttype --> gets the starttype of a service called BFE, base filtering engine. It manages firewall and Internet Protocol security (IPsec) policies and implements user mode filtering. 
+#(get-service bfe).stop() --> stops a service called BFE
+#write-host pushes right to the screen
+#write-output allows other commands to adjust the info like 'sort'
+#
+#use 'Get-Command -verb format' to find the ways to format and squeeze out more information on the commands used
+
+#get-service | sort-object -Property  status --> sorts objects off of their running or stopped status
+#get-service | group-object -Property  status --> displays a number of running and stopped services
+
+#Get-Service | Where-Object { $_.status -eq "Running"} --> this displays only the Running services! :3
+<#\/\/\/\/\/\/\/
+   \/\/\/\/\/\/
+    \/\/\/\/\/
+     \/\/\/\/
+      \/\/\/ :3
+       \/\/
+        \/
+#hehehehehehe
+#get-process | select-object -first 10 --> basicly the head command but with more words. >:3
+
+#get-process | where-object processname -ne "Idle" | sort-object starttime | select-object -last 10 | Format-Table processname, starttime
+# This one ^^^^^^ looks for process start time
+
+#get-unique --> requires a sort before it works. finds all unique char. no duplicates
+#>
+  <#1.
+get-process | where-object processname -ne "Idle" | sort-object starttime | select-object -last 1 -first 1| Format-Table processname, starttime
+
+ #2.Get-date | format-table gave me names for everything :3
+Get-date | Select-Object DayofWeek
+
+ #3.
+Get-HotFix
+
+ #4.
+Get-HotFix | select Description, InstalledOn, HotFixID | sort Description
+
+ #5.
+Get-HotFix | select description, HotFixID, InstalledOn | sort description
+#>
+   <#new object
+$mycar = New-Object Object
+#adding using add-member
+add-member -MemberType NoteProperty -name Color -value "Blue-Grey Green Turquoise Thingy" -InputObject $mycar
+#the short version of that ^^^^
+add-member -Me NoteProperty -Na Make -Value "Hondyota fordoma" -In $mycar 
+#useing positional paramiters
+Add-Member -inputobject $mycar Noteproperty model "Model Cherokee X sport Maximus"
+#adding through a pipelines
+$mycar | add-member noteproperty cab "Big, Very Big Extended Quad Cab"
+
+add-member -me ScriptMethod -na read -value {"I'm not entirely sure this book is appropriate."} -InputObject $mycar
+
+add-member -me ScriptMethod -na cook -Value {"I hope my oil is human-friendly: it's all over everything"} -InputObject $mycar
+
+add-member -me ScriptMethod -na drive -value {"Are you sure?"} -InputObject $mycar
+
+add-member -me ScriptMethod -na Script -value {"Give me all your parameters. I shall do it!"} -InputObject $mycar
+  #>
+    <#
+
+  #Get-WmiObject Win32_Computersystem
+
+  #Get-WmiObject Win32_BIOS
+
+  #Get-WmiObject Win32_OperatingSystem
+
+  #Get-WmiObject Win32_LogicalDisk
+  $compinfo= Get-WmiObject win32_computersystem | select -ExpandProperty name
+  $OSinfo2= Get-WmiObject win32_OperatingSystem | select -ExpandProperty caption
+  $OSinfo= Get-WmiObject win32_OperatingSystem | select -ExpandProperty version
+  $manfactinfo= Get-WmiObject win32_computersystem | select -ExpandProperty Manufacturer
+  $diskinfo= Get-WmiObject win32_LogicalDisk | select -ExpandProperty Path
+  $diskinfo2= $diskinfo | select -ExpandProperty path
+
+  $wmiNotMyObject = New-Object Object
+
+  add-member -Me NoteProperty -na name_boi -value $compinfo -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na operator_boi -value $OSinfo2 -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na version_boi -value $osinfo -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na manufact_bois -value $manfactinfo -InputObject $wmiNotMyObject
+  add-member -Me NoteProperty -na disky_bois -value $diskinfo2 -InputObject $wmiNotMyObject
+       #>
+     <#D:<#>
+      <#>:3#>
+       <#
+
+for (initialization; condition; increment)
+{
+    code block to be executed
+}
+
+ForEach ($item in expression)
+{
+    codblock to be executed
+}
+
+$object | ForEach-Object { code block to be executed}
+
+While(condition True){
+"execute whats in here"
+}
+
+Do{
+"execute whats in here"
+} While(condition True)
+
+
+$num = 4
+
+while($num -lt 42){$num; Num++}
+
+do{
+$num
+$num++
+}while($num -lt 42)
+      _____
+     /     |
+or... this V
+
+do{
+$num
+$num++
+}until($num -lt 42)
+
+$num = 0
+while($num -lt 42){
+    $num++
+    if($num -eq 2){
+        continue
+    }
+    $num
+}
+#replace 'continue' with 'break' to break the loop
+
+
+
+Get-Content
+
+#>
+        <#
+#Part 1
+#open executibals
+#use get-process to get the PID
+#Kill the precesses from the loop
+
+$Exes = "notepad", "msedge", "mspaint"
+
+forEach($item in $Exes) {
+    start-process $item 
+    #get-process $item 
+    #stop-process -name $item
+}
+get-process $Exes
+#Get-Process $Exes | select Id | out-file Procs.txt
+
+$Exes | ForEach-Object { Stop-Process -processname $_ }
+
+
+
+#$Exes | ForEach-Object { Start-process $_ ; Get-Process $_ ; Stop-Process -processname $_ }
+
+
+#part 2
+$Procs = "notepad", "msedge", "mspaint"
+$exes | ForEach-Object { Start-Process $_ }
+
+$file = "$pwd\Procs.txt"
+
+forEach($Proc in $Procs) {
+    Get-Process | Where-Object{$_.name -like $proc}
+    ForEach-Object{Add-Content $file $_.Id} }
+
+#Get-Content .\procs.txt | ForEach-object{Stop-Process -id $_}
+
+ForEach($proc in $Procs) {
+    Get-Process | where-object{$_.name -like $proc} | `
+    format-table -property id, name, starttime, totalprocessortime, `
+    virtualmemorysize, WorkingSet64 }
+    #>
+
+          <#jghfdjkhgjkfdg
+
+
+function Ord-date {(get-date).ToString("yyyy") + '-' + ((Get-Date).DayOfYear).ToString()}
+
+
+<#
+function square($n) {
+read-host "Gimme number" $n
+write-host "$n * $n = $n"
+}
+
+function Square([int]$value)
+{
+    $result = $value * $value
+    return $result
+}
+
+$value = Read-Host 'gimme number!'
+$result = Square $value
+Write-Output $result
+
+
+
+function Sadness([int]$value2)
+{
+    $result2 = $value2 * $value3 * $value4
+    return $result2
+}
+
+$value2 = Read-Host 'gimme MOER Number!!'
+$value3 = Read-Host 'gimme MOER Number!!'
+$value4 = Read-Host 'gimme MOER Number!!'
+$result2 = Sadness $value2
+Write-Output $result2
+#>
+           <#
+function Sadness([int]$value2, $value3)
+{
+    $result2 = (($value2^2) + ($value3^2))
+    return $result2
+}
+
+
+$value2 = Read-Host 'gimme Number!!'
+$value3 = Read-Host 'gimme MOER Number!!'
+$result2 = Sadness $value2, $value3
+Write-Output $result2
+
+function <functionname> {
+    param(
+        $parameter1='<Default Value>',$parameter2='<Default Value>'
+    )
+     <function code>
+}
+
+
+function default_Param {
+    param(
+        $parameter1='1111',$parameter2='123456'
+    )
+     "the parameters passed are $Parameter1 and $Parameter2"
+}
+
+
+#switch parameters
+function name {
+    Param(
+        [paramiter(Manditory=$True)]
+        $Param
+    )
+    <#function code>
+}
+#>
+
+             <#
+    function cmdlet-function {
+    [CmdletBinding(DefaultParameterSetName-'Tacos')]
+      param(
+        [parameter(parameterstename="Tacos",Position=0,Manditory=$true)]
+        $cheese,
+        [parameter(parameterstename="BURRITOS",Position=1,Manditory=$true)]
+        $flavor,
+        [parameter(parameterstename="BURRITOS",Position=2,Manditory=$true)]
+        $spice
+        )
+        $parametersetname = $pscmdlet.parametersetname
+        "the $parameterset Parameter set was utilized"
+      
+      #this is broken, AAAAAAAAAAAAAAAAAAAAaaaaaaaa
+    }#>
+                                                <#function Function-block {
+[CmdletBinding()]
+    param()
+
+    Begin{
+    #This block is used to provide optional one-time preprocessing for the function
+    #does whatever is in here prior to anything else in the function
+    #
+    }
+
+    process {
+    # This block is used to provide record-by-record processing for the function.
+    #Executes code as many time as necessary based off of how many objects are sent to the function through powershell pipeline
+    #---Can ise '$_' to grab the individual values passed to the function without having to call on $input or $args
+    }
+
+    End {
+    #This block is used to provide optional one-time post-processing for the function
+    #Executes this code at the end of the function prior to executing the function.
+    #
+    }
+}#>
+<#
+this is s'pos'd to be a  Pythagrean thearum calculator, but its really good at NOT doing that...
+
+function Sadness([int]$num2,$num3)
+{
+    $num1 = (($num2 * $num2) + ($num3 * $num3))
+    $result = [math]::sqrt($num1)
+    Write-Output $result
+}
+
+$num2 = Read-Host 'gimme Number!!'
+$num3 = Read-Host 'gimme MOER Number!!'
+$num1 = Sadness $num2
+$num1 = Sadness $num3
+Write-Output $result
+#>
+
+
+#I am the bringer of biggest brains
+function deathbyangle ($n,$m) {
+$n = read-host "Gimme angle"
+write-output $n
+
+$m = read-host "Gimme angle again stinky" 
+write-output $m
+
+$angle3 = (180 - $n) - $m
+write-output $angle3
+}
+deathbyangle
