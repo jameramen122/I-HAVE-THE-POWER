@@ -1,0 +1,61 @@
+# Activity #08: Comparisons and Conditions
+
+# Find and extract the model number from the provided lines of text. If there isn't a model number, then display to the user that a
+# model number was't found.
+# Ensure to check both lines for the model number and report individually both the line and model number if found
+#
+# Use the following variables for your script:
+
+$line1="Do you have model number: MO5437 for john.doe@sharklasers.com?"     
+$line2="What model number for john.doe@sharklasers.com?"
+
+# If/Else : Matches the Lines and spits model/no model
+<#
+$line1,$line2 | ForEach-Object { 
+    if ($PSItem -match '[A-Z]{2}[0-9]{4}') { 
+        Write-Host 'Model #'$Matches.Values
+        } 
+    else {
+        Write-Host "Model Number Not Found"
+        }
+    }
+#>
+
+# -OR-
+# If/Else : Matches the Model Number and spits both line number and model/no model
+<# 
+$line1,$line2 | ForEach-Object -Begin {$x=1 } -Process { 
+    if ($PSItem -match '[A-Z]{2}[0-9]{4}') { 
+        Write-Host -nonewline Line$x ; Write-Host ': Model #'$Matches.Values
+        } 
+    else {
+        Write-Host -nonewline Line$x ; Write-Host ": Model Number Not Found"
+        }
+    $x++
+    }
+#>
+
+# -OR-
+# Switch :  Matches the Model Number and spits both line number and model/no model
+<#
+$regex = '[A-Z]{2}[0-9]{4}'
+switch -Regex ($regex) {
+    { $line1  } {
+        if ($line1 -match $regex) {
+            Write-Host "Line1: Model #"$Matches[0]
+        }
+        else {
+             Write-Host "Line1: Model Number Not Found"
+        }
+    }
+    { $line2 } {
+        if ($line2 -match $regex) {
+            Write-Host "Line2: Model #"$Matches[0]
+        }
+        else {
+             Write-Host "Line2: Model Number Not Found"
+        }
+    }
+}
+#>
+        

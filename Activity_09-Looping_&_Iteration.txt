@@ -1,0 +1,72 @@
+# Activity #09: Looping & Iteration
+
+# Part 1
+# Use an array to iterate and open the following:
+#  -Notepad
+#  -MS Edge
+#  -MSPaint
+# Query the Processes
+# Kill the Processes
+
+<#
+# Array to start
+$processes= "notepad", "msedge", "mspaint"
+$processes | ForEach-Object {Start-Process $PSItem }
+
+Query the Processes
+#get-process $processes
+
+# Stopping the Processes
+$processes | % {Stop-Process -Name $_ }
+#>
+
+# Part 2
+# Use an array to iterate and open the following:
+#  -Notepad
+#  -MS Edge
+#  -MSPaint
+# Query the Processes
+# Save the ProcessIDs to a text file called 'procs.txt'
+# Iterate through the process ids in the text file and kill them
+
+<#
+$processes= "notepad", "msedge", "mspaint"
+$PIDs= "$env:HOMEPATH\Desktop\procs.txt"
+$processes | ForEach-Object {Start-Process $PSItem }
+
+sleep 1
+
+ForEach ($process in $processes) {
+    Get-Process | Where-Object { $PSItem.Name -like $process } |
+    ForEach-Object { Add-Content $PIDs $_.Id} 
+    }
+sleep 1
+
+Get-Content $PIDs | % {Stop-Process -Id $_ -ErrorAction SilentlyContinue }
+
+sleep 1
+
+remove-item $pids
+#>
+
+
+# Part 3
+# Use an array to iterate and open the following:
+#  -Notepad
+#  -MS Edge
+#  -MSPaint
+# Query the Processes and display only the information in order by Process ID:
+#  -Process ID
+#  -Process Name
+#  -Time the process started
+#  -The amount of time the process has spent on the processor
+#  -The amount of memory assigned to the process
+
+<#
+$processes= "notepad", "msedge", "mspaint"
+$processes | ForEach-Object {Start-Process $PSItem }
+
+ForEach ($process in $processes) {
+    Get-Process | Where-Object { $PSItem.Name -like $process } |Format-Table -Property ID, Name, StartTime, TotalProcessorTime, WorkingSet64
+    }
+#>

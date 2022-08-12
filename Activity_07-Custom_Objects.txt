@@ -1,0 +1,34 @@
+# Activity #07: Custom Objects
+
+# Create a custom object that contains information about the host system using the following:
+#  - Win32_ComputerSystem
+#  - Win32_BIOS
+#  - Win32_OperatingSystem
+#  - Win32_LogicalDisk
+# Use 'Get-WmiObject' or 'Get-CimInstance' to obtain the information
+# 
+# Output should look like the following:
+#    Computername     :  Computer
+#    OperatingSystem  :  Microsoft Server 2019
+#    Version          :  10.0.23456
+#    Manufacturer     :  Oracle
+#    Disks            :  \\Computer\root\cimv2:Win32_LogicalDisk.DeviceID="A" , 
+#                        \\Computer\root\cimv2:Win32_LogicalDisk.DeviceID="Z"
+
+<#
+$compinfo= Get-WmiObject Win32_ComputerSystem
+$BIOSinfo= Get-WmiObject Win32_BIOS
+$OSinfo= Get-WmiObject Win32_OperatingSystem
+$Diskinfo= Get-WmiObject Win32_LogicalDisk
+$SysInfo= New-object -TypeName psobject
+
+$SysInfo | Add-Member -MemberType NoteProperty -Name Computername -Value $compinfo.Name
+# -utilized : #compinfo | get-member
+$SysInfo | Add-Member -MemberType NoteProperty -Name OperatingSystem -Value $OSinfo.Caption
+# -utilized: $OSinfo | FL *
+# -^^ same as $OSinfo | Format-List -Properties *
+$SysInfo | Add-Member -MemberType NoteProperty -Name Version -Value $OSinfo.Version
+$SysInfo | Add-Member -MemberType NoteProperty -Name Manufacturer -Value $BIOSinfo.Manufacturer
+$SysInfo | Add-Member -MemberType NoteProperty -Name Disks -Value $Diskinfo.Path
+$Sysinfo
+#>

@@ -1,0 +1,50 @@
+# Activity #10: Creating Functions
+
+# Write a function that returns the Ordinal date of the current date
+# Example:
+#         PS> Get-OrdinalDate
+#         2022-36
+
+<#
+function Retrieve-OrdinalDate {
+    $day=(get-date).DayOfYear
+    $year=(get-date).Year
+    write-host "$year-$day"
+}
+Retrieve-OrdinalDate
+#>
+
+# Create a function that takes a number(n) as an argument and returns the square(n^2) of the number 
+# Example:
+#         PS> Get-SquareNum 10
+#         100
+
+<#
+function Number-Squared([int]$Number) {
+    $Number * $Number
+    
+}
+Number-Squared 6
+#>
+
+# -OR-
+# Using .Net Casting
+<#
+function Number-Squared([int]$Number) {
+    [math]::Pow($number,2)
+}
+Number-Squared 9
+#>
+
+# Create a function that takes three (3) arguments and returns the product of the arguments
+# Example:
+#         PS> Get-Product 5 5 5
+#         125
+
+<#
+function Find-Product($Number1,$Number2,$Number3) {
+    $Product= $Number1 * $Number2 * $Number3
+    Write-Host $Product
+}
+Find-Product 2 4 6
+#>

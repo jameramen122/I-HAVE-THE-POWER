@@ -1,0 +1,42 @@
+# Activity #06: Pipeline
+
+# Display the start time of the earliest and latest running processes
+
+<#
+Get-Process | Measure-Object -Property StartTime -Minimum -Maximum | Select-Object -Property Minimum, Maximum
+#>
+
+# -OR-
+# Using Where-Object
+<#
+Get-Process | Where-Object {$_.StartTime} | Measure-Object -Property StartTime -Minimum -Maximum | Select-Object -Property Minimum, Maximum
+#>
+
+# Identify a cmdlet that returns the current date and time. Then using the same cmdlet and 'Select-object', display only the 
+# current day of the week
+
+<#
+Get-Date
+Get-Date | get-member
+# get-member displays all the properties and methods of a command
+
+Get-Date | Select-Object DayofWeek
+#>
+
+# Identify a cmdlet that displays a list of installed hotfixes
+
+<#
+Get-Hotfix
+#>
+
+# Extend the expression to sort the list by installation date, and display only the installation date and hotfix id
+
+<#
+Get-HotFix | Sort-Object -Property Installdate | Select-Object InstalledOn, HotFixID
+#>
+
+# Extend the expression further, but this time sort by description. Have it output only the description, hotfix id and installation date
+
+<#
+Get-HotFix | Sort-Object -Property Description | Select-Object InstalledOn, HotFixID, Description
+#>

@@ -1,0 +1,152 @@
+# Activity #12: Advance Function Parameters
+
+# Create an advanced function using Begin, Process, and End, that takes two(2) arguments. 
+# The first argument being an array of at least ten(10) integers and the second argument being a single integer. 
+# Search the array argument for every occurrence of the single integer argument then return the sum of all elements in 
+# the array excluding every occurrence of the single integer argument.
+#
+# Example:
+#         PS> Get-MultiSums @(1,2,3,4,5,6,7,8,9,10) 5
+#         50
+
+<#
+function Find-Sums ([array]$array, [int]$nums) {
+    Begin {
+          $sum = 0
+    }
+    Process {        
+        ForEach ($numb in $array) {
+            if ($numb -ne $nums) {
+                 $sum = $sum+$numb
+            }
+        }
+    }
+    End {
+             Write-Host $sum
+    }
+}
+find-sums @(1,2,3,4,5,6,7,8,9,10) 5
+#>
+
+# -OR-
+# Checks to see if the array has at least 10 values and that the number to skip is in the array
+<#
+function Find-Sums ([array]$array, [int]$nums) {
+    Begin {
+          $sum= 0
+    }
+    Process {
+        while ($array.count -lt 10 ) {
+            [int]$more = read-host -prompt "Enter an integer"
+            $array += $more
+            }
+        if ($array -notcontains $nums) {
+            throw "Enter an integer within the array"
+        }           
+        ForEach ($numb in $array) {
+            if ($numb -ne $nums) {
+                 $sum = $sum+$numb
+            }
+        }
+
+    }
+    End {           
+            Write-Host $sum
+        }
+    }
+find-sums @(1,2,3,4,5,6,7) 1
+#>
+
+# Create an advanced function using Begin, Process, End, that prompts the user to enter the names of three(3) U.S. States 
+# then returns the names of the states in the order of longest name to shortest name and the amount of characters in each name.
+#
+# Example:
+#         PS> Get-LongestName
+#         Georgia: 7
+#         Idaho: 5
+#         Utah: 4
+
+
+#Using an Array to hold the values
+<#
+function Get-StateNameLength {
+    #param ($a,$b,$c)
+    Begin {
+        $a = Read-Host "Enter a State name"
+        $b = Read-Host "Enter a second State name"
+        $c = Read-Host "Enter a third State name"
+        $statearray=(@($a;$b;$c) | sort {$_.length} -Descending)
+    }
+    Process {
+        foreach ($state in $statearray){
+            $len= $state.Length
+            Write-Output ""$state": $len"
+        }
+    }
+}
+#>
+
+# -OR-
+# Using a Hash Table to store the Values
+<#
+function states ($st1,$st2,$st3){
+    BEGIN {
+        if ([string]::IsNullOrEmpty($st1)) {
+            $st1 = Read-Host 'First State '
+        }
+        if ([string]::IsNullOrEmpty($st2)) {
+            $st2 = Read-Host 'Second State '
+        }
+        if ([string]::IsNullOrEmpty($st3)) {
+            $st3 = Read-Host 'Third State '
+        }
+        #$stl1 = $st1.Length 
+        #$stl2 = $st2.Length
+        #$stl3 = $st3.Length
+    }
+    PROCESS{
+        $states = @{ $st1 = $st1.length; $st2 = $st2.Length; $st3 = $st3.Length}
+        #$states = @{ $st1 = $stl1; $st2 = $stl2; $st3 = $stl3}
+    }
+    END { 
+        $states.GetEnumerator() | sort -Property Value -Descending | Format-Table -HideTableHeaders 
+    }
+}
+#>
+
+# -OR-
+# Using a VBScript Pop-up
+<#
+function USState-Lengths {
+    Begin {
+        $counter=1
+        $US_States= @()
+          }
+    Process {
+             while ($counter -ge 1 -and $counter -le 3)
+                   {
+                       [void][Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic')
+                            $title = "Choose a US State"
+                            $msg = "Enter your US State #${counter}:"
+                            $text = [Microsoft.VisualBasic.Interaction]::InputBox($msg, $title)
+                       $US_State=$text
+                       $US_States += $US_State 
+                       $counter +=1
+                   }
+             foreach ($state in $US_States) {
+                if ($state.length -eq 0) {
+                        throw 'Unable to accept a value of $null. Re-run function and enter a US State(s)'
+                        }
+                }
+            }
+    End {
+        $Order= $US_States | Sort-Object -Property Length -Descending
+             foreach ($state in $Order) 
+                    {
+                        Write-Host ${state}:  ${state}.Length
+                    }
+        }
+}
+
+USState-Lengths
+#>

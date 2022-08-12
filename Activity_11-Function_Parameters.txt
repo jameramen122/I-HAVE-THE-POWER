@@ -1,0 +1,92 @@
+# Activity #11: Function Parameters
+
+# Create a function that takes two (2) integer values, '$a' and '$b', that are the lengths of two (2) legs
+# of a right triangle and returns the hypotenuse
+#
+# Use the Pythagorean Theorem of (a^2 + b^2 = c^2) to find the value of the hypotenuse
+
+<#
+function Find-Hypotenuse($a,$b) {
+    $c2= ($a * $a) + ($b * $b)  
+    [math]::Sqrt($c2)
+    }
+#>
+
+# -OR-
+# Validates sides are entered and are not blank/null
+<#
+function Find-Hypotenuse {
+    param (
+        [parameter(mandatory=$true,helpmessage="Side one of triangle")]
+        $a, 
+        [parameter(mandatory=$true,helpmessage="Side two of triangle")]
+        $b
+        )
+    if ([string]::IsNullOrEmpty($a)) {
+        while ([string]::IsNullOrEmpty($a)) {
+            $a=read-host -Prompt "Enter a value for Side1"
+        }
+    }
+    if ([string]::IsNullOrEmpty($b)) {
+        while ([string]::IsNullOrEmpty($b)) {
+            $b=read-host -Prompt "Enter a value for Side2"
+        }
+    }
+    $c2= ([math]::Pow($a,2)) + ([math]::Pow($b,2))
+    [math]::Sqrt($c2)
+}
+#>
+
+# Create a function that takes two (2) values, '$a' and '$b', as two (2) angles in degrees of a triangle.
+# Return the value of the missing angle
+
+<#
+function get-angle($a,$b){
+    $angle = 180 - ($a + $b)
+    Write-Host $angle
+}
+#>
+
+# -OR-
+# Validates this is a real triangle
+<#
+function Find-Angle ($ang1,$ang2) {
+    $ang3= 180 - ($ang1 + $ang2)
+    if ($ang3 -gt 0 -AND $ang3 -lt 180) {
+       write-host "Missing angle is $ang3 degrees" 
+       }
+       Else {
+       Write-Host "This is not a real triangle"
+       }
+}
+
+Find-Angle 30 90
+#>
+
+# Create a function that takes the following as mandatory parameters:
+#  -First Name
+#  -Last Name
+#  -Age
+#  -Weight in pounds (lbs)
+# Return the information in a hash table using the keys: 'first', 'last', 'age', and 'weight'. 
+#  -The weight value returned shall be converted to kilograms (kg) and rounded to the nearest whole number
+
+<#
+function Display-PersInfo {
+   param (
+        [Parameter(Mandatory=$True, Position=0, HelpMessage="Type in your First Name")]
+            [string]$Fname,
+        [Parameter(Mandatory=$True, Position=1, HelpMessage="Type in your Last Name")]
+            [string]$Lname,
+        [Parameter(Mandatory=$True, Position=2, HelpMessage="Type in your Age")]
+            [ValidateRange(0,120)]
+            [int]$Age,
+        [Parameter(Mandatory=$True, Position=3, HelpMessage="Type in your Weight in lbs")]
+            [ValidateRange(0,750)]
+            [int]$Weight
+         )
+    $KgWeight=[math]::Round($Weight / 2.2)
+    $Display= [ordered]@{Fname="$Fname"; Lname="$Lname"; Age="$Age"; Weight="$KgWeight kgs"}
+    Write-Output $Display
+}
+#>

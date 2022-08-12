@@ -1,0 +1,139 @@
+function Positional-Params {
+    param(
+        [Parameter(Mandatory=$true,Position=0)]
+        [int]
+        $number,
+        [Parameter(Mandatory=$true,Position=1)]
+        [string]
+        $string,
+        [Parameter(Mandatory=$true,Position=2)]
+        [string]
+        $anotherstring
+        )
+        
+        Write-Output "$number is the first positional parameter"
+        Write-Output "$String is the second positional parameter"
+        Write-Output "$anotherstring is the third positional parameter"
+
+}
+#Running with No Parameters
+<#
+Command: 
+Positional-Params
+
+----------------------------
+
+Result:
+cmdlet Positional-Params at command pipeline position 1
+Supply values for the following parameters:
+number: <entered '1'>
+string: <entered 'ballons'>
+anotherstring: <entered 'five'>
+1 is the first positional parameter
+ballons is the second positional parameter
+five is the third positional parameter
+#>
+
+#Running with One Parameter Declared and Two undeclared
+<#
+Command: 
+Positional-Params -string "balloons" 1 "five"
+
+--------------------------------------------------
+Result:
+1 is the first positional parameter
+balloons is the second positional parameter
+five is the third positional parameter
+#>
+
+#Running with wrong Parameter types Declared
+<#
+Command:
+Positional-Params "balloons" 1 "five"
+
+----------------------------------------------
+
+Result:
+Positional-Params : Cannot process argument transformation on parameter 'number'. Cannot convert value "balloons" to type 
+"System.Int32". Error: "Input string was not in a correct format."
+At line:1 char:19
++ Positional-Params "balloons" 1 "five"
++                   ~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Positional-Params], ParameterBindingArgumentTransformationException
+    + FullyQualifiedErrorId : ParameterArgumentTransformationError,Positional-Params
+#>
+
+function Param-Sets {
+[CmdletBinding(DefaultParameterSetName='Tacos')]
+    param(
+        [Parameter(ParameterSetName="Tacos",Position=0,Mandatory=$true)]
+        $flavor,
+        [Parameter(ParameterSetName="Tacos",Mandatory=$true)]
+        $cheese,
+        [Parameter(ParameterSetName="Tacos",Mandatory=$true)]
+        $spice,
+        [Parameter(ParameterSetName="Burritos",Mandatory=$true)]
+        $beans,
+        [Parameter(ParameterSetName="Burritos",Mandatory=$true)]
+        $rice
+        )
+
+        $ParameterSetName = $PSCmdlet.ParameterSetName
+        "The $ParameterSetName Parameter Set was utilized"
+
+}
+#Running without declaring any Parameters
+<#
+Command:
+Param-Sets
+
+---------------------------------------
+
+Result:
+cmdlet Param-Sets at command pipeline position 1
+Supply values for the following parameters:
+flavor: beef
+cheese: "all of it"
+spice: death
+The Tacos Parameter Set was utilized
+#>
+
+#Running while declaring a parameter not part of the DefaultParameterSet
+<#
+Command:
+Param-Sets -beans "blackeyepeas" -rice "dirty"
+
+---------------------------------------
+
+Result:
+
+The Burritos Parameter Set was utilized
+#>
+
+function Function-Blocks {
+[CmdletBinding()]
+    param()
+
+    Begin { 
+            <#
+            -This block is used to provide optional one-time preprocessing for the function
+            -Does whatever is in here prior to anything else in the function 
+            #>
+    }
+    
+    Process {
+            <# 
+            -This block is used to provide record-by-record processing for the function.
+            -Executes code as many times as necessary based off of how many objects are sent to the function through PowerShell pipeline
+            ---Can use '$_' to grab the individual values passed to the function without having to call on $input or $args
+            #>
+    }
+    
+    End { 
+         <# 
+         -This block is used to provide optional one-time post-processing for the function
+         -Executes this code at the end of the function prior to exiting the function
+         #>
+    }
+
+}
