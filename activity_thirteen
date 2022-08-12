@@ -1,0 +1,17 @@
+function Get-Netinfo {
+$IpAddr=(ipconfig)[-3]
+$IpSubN=(ipconfig)[-2]
+$IpGate=(ipconfig)[-1]
+
+return $IpAddr, $IpSubN, $IpGate
+}
+
+
+#\w{1,3}\.\w{0,}\.\w{1,3}
+#www\.\w{0,}\.com
+
+
+function DeathByRegex {
+select-string -Path C:\Users\student\desktop\DNS.txt.txt -Pattern "www\.\w{0,}\.com" -AllMatches
+
+}
