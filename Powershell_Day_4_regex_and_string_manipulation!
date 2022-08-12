@@ -1,0 +1,64 @@
+How to escape characters 
+
+` --> the grave key, or the nacktick
+`n --> newline
+`t --> tab
+`b --. backspace
+`` --> that escapes the escape key
+`"`0`" = $null
+
+
+"They said "hello stoopid"" --> this will fail
+but if you do
+"They said `"hello stoopid`"" --> this will output without errors.
+
+@"
+the "at" symbol spreads one line
+of code over many
+lines
+so you can do this
+
+They said
+`"Hello Stoopid`"
+"@
+
+
+REGEX ... woooooo......... 
+hahahaha
+you thought
+\d --> a digit (0-9)
+\D --> anything BUT a digit
+\w --> letter number or character
+\W --> NOT letter number or character
+\s --> is whitespace
+\S --> NOT whitespace
+\n --> newline/linebreak
+\b --> boundry
+$ --> beguning of a line/pattern
+^ --> end of a line/pattern
+| --> or
+& --> and
+* --> anything
+? --> any none or one character
++ --> once or multiple times
+{3} --> happens 3 time exactly
+{3,} --> happens atleast 3 times
+{1,3} --> happens a minimum of 1 to a maximum of 3 times
+[a-z] --> any character from a to z
+[abz] --> the letters 'a' 'b' and 'z'
+(abc) --> matches the pattern 'abc'
+[^zxy] --> Not 'z' 'x' or 'y'
+(yes|no) --> matches for 'yes' or 'no'
+[a-z0-9] --> matches a lowercase letter and/or a number within a-z \ 0-9
+
+
+
+$arr = @('PCS', 'WE GRADUATED COSC', 'Happy')
+$arr -join('=')
+
+"I really love the traffic laws in California" -replace 'California','Florida' --> replaces Cali with Florida!!
+
+"String" -split("r") --> splits a st ing on a delimiter and outputs a thing
+
+("C:\windows\system32\system management\distrobution\client" -split('\\'))[-1] --> returns "client"
+"C:\windows\system32\system management\distrobution\client" -split('\\') --> splits the output on the \
